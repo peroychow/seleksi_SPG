@@ -30,43 +30,43 @@
     </center>
     <section class="section-form">
       <h2 class="subtitle">Tambah alternatif</h2>
-      <form class="form">
-        <label class="label">Name</label>
+      <form class="form" method="POST" action="prosesFormInput.php">
+        <label class="label">Nama</label>
         <p class="control">
-          <input class="input" type="text" placeholder="Nama kandidat">
+          <input class="input" name="nama" type="text" placeholder="Nama kandidat">
         </p>
 
         <label class="label">Tinggi badan</label>
         <p class="control">
-          <input class="input" type="text" placeholder="Range 150-180">
+          <input class="input" name="tinggi" type="text" placeholder="Range 150-180">
         </p>
 
         <label class="label">Pendidikan terakhir</label>
         <p class="control">
           <span class="select">
-            <select>
-              <option>SMA/SMK</option>
-              <option>D1</option>
-              <option>D2</option>
-              <option>D3</option>
-              <option>S1</option>
+            <select name="pendidikan">
+              <option value="75">SMA/SMK</option>
+              <option value="80">D1</option>
+              <option value="85">D2</option>
+              <option value="90">D3</option>
+              <option value="95">S1</option>
             </select>
           </span>
         </p>
 
         <label class="label">Kemampuan bahasa inggris</label>
         <p class="control">
-          <input class="input" type="text" placeholder="TOEFL Score">
+          <input class="input" name="toeflscore" type="text" placeholder="TOEFL Score">
         </p>
 
         <label class="label">Berat badan</label>
         <p class="control">
-          <input class="input" type="text" placeholder="Range 40-80kg">
+          <input class="input" name="berat" type="text" placeholder="Range 40-80kg">
         </p>
 
         <label class="label">Pengalaman kerja</label>
         <p class="control">
-          <input class="input" type="text" placeholder="Format bulan, Exm: 12">
+          <input class="input" name="pengalaman" type="text" placeholder="Format bulan, Exm: 12">
         </p>
 
         <p class="control is-grouped">
