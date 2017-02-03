@@ -53,6 +53,7 @@
         <th>C3</th>
         <th>C4</th>
         <th>C5</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -75,6 +76,9 @@
               <td>" . $data['c3'] . "</td>
               <td>" . $data['c4'] . "</td>
               <td>" . $data['c5'] . "</td>
+              <td>
+                <a href=form_kandidat.php>Tambah or Hapus</a>
+              </td>
             </tr>
             ";
           }

@@ -73,6 +73,42 @@
           <button class="button is-primary">Submit</button>
         </p>
       </form>
+
+      <hr>
+      <h2 class="subtitle">Hapus alternatif</h2>
+      <form class="form" method="POST" action="prosesHapusRecord.php">
+        <label class="label">Pilih Nama</label>
+        <p class="control">
+          <span class="select">
+            <?php
+            include "conn.php";
+            $sql = "
+              SELECT id_kandidat, alternatif
+              FROM kandidat
+            ";
+            $result = mysqli_query($conn, $sql);
+            if (!$result) {
+              die("Gagal ambil data : " . mysql_error());
+            }
+            $select = '<select name="select" class="select">';
+            echo $select;
+            while ($data = mysqli_fetch_array($result)) {
+              echo "
+                <option value=".$data[id_kandidat].">" . $data[alternatif] . "</option>"
+              ;
+            }
+            echo "</select>";
+            $conn->close();
+            ?>
+          </span>
+          <span>
+            <a>&nbsp</a>
+          </span>
+          <span>
+              <button class="button is-danger">Hapus</button>
+          </span>
+        </p>
+      </form>
     </section>
   </section>
   </body>
