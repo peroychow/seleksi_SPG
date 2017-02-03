@@ -12,7 +12,9 @@
       <div class="container">
         <div class="nav-left">
           <a class="nav-item">
+          <!--
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+          -->
           </a>
           <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
           <a class="nav-item is-tab is-hidden-mobile">Alternatif</a>
@@ -47,14 +49,18 @@
     </center>
     <article class="message is-info">
       <div class="message-header">
-        <p>Info</p>
+        <p>Note</p>
       </div>
       <div class="message-body">
+        <p>Kriteria</p>
         <p>C1 = Tinggi badan (Range 150-180) -> <i>benefit</i></p>
         <p>C2 = Grade pendidikan (SMA/SMK, D1, D2, D3, S1) -> <i>benefit</i></p>
         <p>C3 = Kemampuan bahasa inggris (Nilai TOEFL) -> <i>benefit</i></p>
         <p>C4 = Berat badan (Range 40-80) -> <i>cost</i></p>
         <p>C5 = Pengalaman kerja (Dalam hitungan bulan) -> <i>benefit</i></p>
+        <br>
+        <p>Proses pemilihan dengan menggunakan bobot, </p>
+        <p>W = [20%, 20%, 20%, 20%, 20%]</p>
       </div>
     </article>
     <h2 class="subtitle">NILAI AWAL</h2>
@@ -111,10 +117,10 @@
   <tbody>
   <?php
         include "conn.php";
-        /*$sql = "
-          SELECT c1
+        $sql = "
+          SELECT alternatif, c1, c2, c3, c4, c5
           FROM kandidat
-        ";*/
+        ";
         $getMaxC1 = "
           SELECT MAX(c1)
           FROM kandidat
@@ -127,19 +133,19 @@
           SELECT MAX(c3)
           FROM kandidat
         ";
-        $getMaxC4 = "
-          SELECT MAX(c4)
+        $getMinC4 = "
+          SELECT MIN(c4)
           FROM kandidat
         ";
         $getMaxC5 = "
           SELECT MAX(c5)
           FROM kandidat
         ";
-        //$result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
         $resultMaxC1 = mysqli_query($conn, $getMaxC1);
         $resultMaxC2 = mysqli_query($conn, $getMaxC2);
         $resultMaxC3 = mysqli_query($conn, $getMaxC3);
-        $resultMaxC4 = mysqli_query($conn, $getMaxC4);
+        $resultMinC4 = mysqli_query($conn, $getMinC4);
         $resultMaxC5 = mysqli_query($conn, $getMaxC5);
         if (!$resultMaxC1) {
           die("Gagal ambil data : " . mysql_error());
@@ -151,22 +157,54 @@
         $maximumC2 = $row[0];
         $row = mysqli_fetch_row($resultMaxC3);
         $maximumC3 = $row[0];
-        $row = mysqli_fetch_row($resultMaxC4);
-        $maximumC4 = $row[0];
+        $row = mysqli_fetch_row($resultMinC4);
+        $minimumC4 = $row[0];
         $row = mysqli_fetch_row($resultMaxC5);
         $maximumC5 = $row[0];
 
-        echo "Nilai maximum dari Criteria 1 - 5 = " . $maximumC1 ."  - ". $maximumC2 ." - ". $maximumC3 ." - ". $maximumC4 ." - ". $maximumC5;
-        /*while ($data = mysqli_fetch_array($result)) {
-          $normalisasi_c1 = $data['c1']/2;
+        //echo "Nilai maximum dari Criteria 1 - 5 = " . $maximumC1 ."  - ". $maximumC2 ." - ". $maximumC3 ." - ". $minimumC4 ." - ". $maximumC5;
+
+        while ($data = mysqli_fetch_array($result)) {
           echo "
-            <p>" . $normalisasi_c1 . "</p>
+          <tr>
+            <td>" . $data['alternatif'] . "</td>
+            <td>" . $data['c1']/$maximumC1 . "</td>
+            <td>" . $data['c2']/$maximumC2 . "</td>
+            <td>" . $data['c3']/$maximumC3 . "</td>
+            <td>" . $minimumC4/$data['c4'] . "</td>
+            <td>" . $data['c5']/$maximumC5 . "</td>
+          </tr>
           ";
-        }*/
-        $conn->close();
-  ?>
+        }
+        //$conn->close();
+      ?>
   </tbody>
   </table>
 
+  <h1 class="subtitle">HASIL YANG DIPEROLEH</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Alternatif</th>
+        <th>Nilai akhir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        $result = mysqli_query($conn, $sql);
+        while ($data = mysqli_fetch_array($result)) {
+          echo "
+            <tr>
+              <td>" .$data['alternatif']. "</td>
+          ";
+          echo "<td>"
+            . $total = ((0.20)*($data['c1']/$maximumC1)) + ((0.20)*($data['c2']/$maximumC2)) + ((0.20)*($data['c3']/$maximumC3)) + ((0.20)*($minimumC4/$data['c4'])) + ((0.20)*($data['c5']/$maximumC5)).
+          "</td>";
+        }
+        $conn->close();
+      ?>
+    </tbody>
+  </table>
   </body>
 </html>
