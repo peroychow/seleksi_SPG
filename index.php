@@ -8,12 +8,13 @@
     </style>
   </head>
   <body>
+    <section class="section">
     <nav class="nav has-shadow">
       <div class="container">
         <div class="nav-left">
           <a class="nav-item"></a>
           <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
-          <a class="nav-item is-tab is-hidden-mobile">Alternatif</a>
+          <a class="nav-item is-tab is-hidden-mobile" href=form_kandidat.php>Alternatif</a>
         </div>
         <span class="nav-toggle">
           <span></span>
@@ -42,7 +43,7 @@
         <p>W = [20%, 20%, 20%, 20%, 20%]</p>
       </div>
     </article>
-    <h2 class="subtitle">NILAI AWAL</h2>
+    <h2 class="subtitle"><strong>NILAI AWAL</strong></h2>
     <table class="table">
     <thead>
       <tr>
@@ -81,7 +82,7 @@
     ?>
     </tbody>
   </table>
-  <h2 class="subtitle">NORMALISASI MATRIKS</h2>
+  <h2 class="subtitle"><strong>NORMALISASI MATRIKS</strong></h2>
   <table class="table">
   <thead>
     <tr>
@@ -159,7 +160,7 @@
   </tbody>
   </table>
 
-  <h1 class="subtitle">HASIL YANG DIPEROLEH</h1>
+  <h1 class="subtitle"><strong>HASIL YANG DIPEROLEH</strong></h1>
 
   <table class="table">
     <thead>
@@ -184,5 +185,6 @@
       ?>
     </tbody>
   </table>
+  </section>
   </body>
 </html>

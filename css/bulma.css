@@ -6042,6 +6042,11 @@ label.panel-block:hover {
   padding: 3rem 1.5rem;
 }
 
+.section-form {
+  background-color: white;
+  padding: 3rem 15rem;
+}
+
 @media screen and (min-width: 1000px) {
   .section.is-medium {
     padding: 9rem 1.5rem;
